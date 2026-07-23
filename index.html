@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panadería Pan Ruta | Tienda Online Artesanal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        bakery: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                            950: '#451a03',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fffbeb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b45309;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-badge {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-amber-50/40 text-stone-800 font-sans antialiased min-h-screen flex flex-col selection:bg-bakery-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Branding -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToCatalog()">
+                    <div class="w-12 h-12 bg-bakery-600 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md transform hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-bread-slice"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-2xl text-stone-900 tracking-tight block leading-none">Pan Ruta</span>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-bakery-600 block mt-1">Panadería Artesanal</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Links & Cart Button -->
+                <div class="flex items-center space-x-4 sm:space-x-8">
+                    <nav class="hidden md:flex items-center space-x-6 font-medium text-sm text-stone-600">
+                        <a href="#catalogo" class="hover:text-bakery-600 transition-colors">Catálogo</a>
+                        <a href="#nosotros" class="hover:text-bakery-600 transition-colors">Nosotros</a>
+                        <a href="#ubicacion" class="hover:text-bakery-600 transition-colors">Ubicación</a>
+                    </nav>
+
+                    <!-- Cart Trigger Button -->
+                    <button id="cartBtn" onclick="toggleCart(true)" class="relative bg-amber-100 hover:bg-amber-200 text-bakery-900 p-3 rounded-2xl flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow active:scale-95 group">
+                        <i class="fa-solid fa-basket-shopping text-xl text-bakery-700 group-hover:scale-110 transition-transform"></i>
+                        <span id="cartBadge" class="absolute -top-1 -right-1 bg-bakery-600 text-white font-bold text-xs rounded-full h-5 min-w-[20px] px-1 flex items-center justify-center border-2 border-white shadow scale-0 transition-transform duration-300">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative bg-gradient-to-r from-stone-900 via-stone-800 to-bakery-950 text-white py-16 lg:py-24 overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-bakery-600/30 border border-bakery-500/40 px-3.5 py-1.5 rounded-full text-bakery-300 text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+                        <i class="fa-solid fa-fire text-amber-400"></i>
+                        <span>Horneado fresco a diario desde 1 Bs</span>
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-amber-50">
+                        Pan Fresco y Artesanal Directo a Tu Mesa
+                    </h1>
+                    <p class="text-stone-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        En <strong class="text-white">Panadería Pan Ruta</strong> preparamos el pan más crujiente y delicioso, masa madre natural, empanadas y repostería recién horneada. ¡Haz tu pedido online y recíbelo directo por WhatsApp!
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#catalogo" class="w-full sm:w-auto bg-bakery-600 hover:bg-bakery-500 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-amber-600/30 transition-all text-center flex items-center justify-center space-x-2 group">
+                            <span>Ver Menú y Ordenar</span>
+                            <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="https://wa.me/59162933581?text=Hola%20Panader%C3%ADa%20Pan%20Ruta,%20quisiera%20hacer%20un%20pedido" target="_blank" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium px-6 py-4 rounded-xl backdrop-blur-sm transition-all text-center flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                            <span>WhatsApp Directo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Featured Image Showcase -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-500/20 group">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop" alt="Pan Artesanal Recién Horneado" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6">
+                            <span class="text-xs text-amber-400 font-bold uppercase tracking-widest">Especialidad de la Casa</span>
+                            <h3 class="text-xl font-bold font-serif text-white">Panes Tradicionales & Repostería</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Main Section -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow">
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-3">Nuestros Productos</h2>
+            <p class="text-stone-600 text-sm sm:text-base">Selecciona tus productos favoritos, agrégalos al carrito y confirma tu pedido de manera rápida por WhatsApp.</p>
+        </div>
+
+        <!-- Search and Category Filters -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
+            <!-- Search Input -->
+            <div class="relative w-full md:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar pan, empanada, dulce..." class="w-full pl-11 pr-4 py-3 bg-white border border-amber-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-bakery-500 shadow-sm transition-all">
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0" id="categoryButtons">
+                <button onclick="setCategory('all')" class="category-btn active border px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all bg-bakery-600 text-white border-bakery-600 shadow-sm">Todos</button>
+                <button onclick="setCategory('panes')" class="category-btn border px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all bg-white text-stone-700 border-amber-200 hover:bg-amber-100">Panes Tradicionales</button>
+                <button onclick="setCategory('salados')" class="category-btn border px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all bg-white text-stone-700 border-amber-200 hover:bg-amber-100">Empanadas & Salados</button>
+                <button onclick="setCategory('reposteria')" class="category-btn border px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all bg-white text-stone-700 border-amber-200 hover:bg-amber-100">Repostería & Dulces</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Products Grid -->
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamically injected via JavaScript -->
+        </div>
+
+        <!-- Empty Results State -->
+        <div id="noResults" class="hidden text-center py-16 bg-white rounded-2xl border border-amber-100 p-8">
+            <i class="fa-solid fa-cookie-bite text-5xl text-amber-300 mb-4"></i>
+            <h3 class="text-xl font-bold text-stone-800 mb-2">No encontramos productos</h3>
+            <p class="text-stone-500 text-sm">Prueba buscar con otra palabra clave o selecciona otra categoría.</p>
+        </div>
+    </main>
+
+    <!-- Info & Location Section -->
+    <section id="nosotros" class="bg-amber-100/60 border-t border-b border-amber-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-200/60 flex flex-col items-center md:items-start">
+                    <div class="w-12 h-12 bg-bakery-100 text-bakery-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-stone-900 mb-2">100% Calidad Artesanal</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Horneamos todos los días con ingredientes seleccionados y masa madre tradicional.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-200/60 flex flex-col items-center md:items-start">
+                    <div class="w-12 h-12 bg-bakery-100 text-bakery-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-brands fa-whatsapp text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-stone-900 mb-2">Pedidos por WhatsApp</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">Selecciona tus panes en el carrito y coordina tu pedido directo con nosotros en segundos.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-200/60 flex flex-col items-center md:items-start" id="ubicacion">
+                    <div class="w-12 h-12 bg-bakery-100 text-bakery-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-stone-900 mb-2">Contacto & Horarios</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed mb-1">📍 Panadería Pan Ruta</p>
+                    <p class="text-stone-600 text-sm leading-relaxed mb-1">📱 WhatsApp: +591 62933581</p>
+                    <p class="text-stone-600 text-sm leading-relaxed">⏰ Abierto diariamente desde temprano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Drawer Overlay -->
+    <div id="cartOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-stone-950/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Shopping Cart Drawer Side Panel -->
+    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out">
+        <!-- Drawer Header -->
+        <div class="p-6 bg-stone-900 text-white flex items-center justify-between border-b border-stone-800">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-basket-shopping text-bakery-400 text-xl"></i>
+                <h2 class="font-serif font-bold text-lg">Tu Carrito de Compras</h2>
+            </div>
+            <button onclick="toggleCart(false)" class="text-stone-400 hover:text-white p-2 rounded-lg hover:bg-stone-800 transition-colors" aria-label="Cerrar carrito">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body: Cart Items List -->
+        <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <!-- JavaScript injected cart items -->
+        </div>
+
+        <!-- Drawer Footer: Checkout Form -->
+        <div id="cartFooter" class="p-6 bg-amber-50/50 border-t border-amber-200 space-y-4">
+            <!-- Customer Information Inputs -->
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-stone-600 mb-1">Nombre Completo *</label>
+                    <input type="text" id="customerName" placeholder="Ej: Franco David" class="w-full px-3.5 py-2.5 bg-white border border-amber-200 rounded-xl text-sm focus:ring-2 focus:ring-bakery-500 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-stone-600 mb-1">Dirección o Detalles de Entrega</label>
+                    <input type="text" id="customerAddress" placeholder="Ej: Retiro en tienda / Dirección de envío" class="w-full px-3.5 py-2.5 bg-white border border-amber-200 rounded-xl text-sm focus:ring-2 focus:ring-bakery-500 outline-none transition-all">
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="pt-2 border-t border-amber-200/80 space-y-2 text-sm">
+                <div class="flex justify-between text-stone-600">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal" class="font-medium text-stone-900">0.00 Bs</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-stone-900 pt-2 border-t border-amber-200">
+                    <span>Monto Total:</span>
+                    <span id="cartTotal" class="text-bakery-700 text-xl font-serif">0.00 Bs</span>
+                </div>
+            </div>
+
+            <!-- WhatsApp Checkout Trigger Button -->
+            <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-emerald-600/30 transition-all flex items-center justify-center space-x-3 group active:scale-98">
+                <i class="fa-brands fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i>
+                <span class="text-base">Finalizar Pedido por WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Floating WhatsApp Action Widget -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-2">
+        <div class="bg-stone-900/90 text-white text-xs px-3 py-1.5 rounded-full shadow-lg border border-stone-700 backdrop-blur-md flex items-center space-x-2 animate-bounce">
+            <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full inline-block pulse-badge"></span>
+            <span class="font-medium">¡Hola! Estamos Online</span>
+        </div>
+
+        <a href="https://wa.me/59162933581?text=¡Hola!%20Me%20contacto%20desde%20la%20tienda%20online%20de%20Panader%C3%ADa%20Pan%20Ruta" target="_blank" aria-label="Contacto por WhatsApp" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-all duration-300 focus:outline-none">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-bakery-600 rounded-xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-bread-slice"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-xl text-white block leading-none">Panadería Pan Ruta</span>
+                        <span class="text-xs text-amber-500 block mt-1">Sabor Tradicional & Calidad Garantizada</span>
+                    </div>
+                </div>
+
+                <div class="text-sm space-y-1">
+                    <p>📱 WhatsApp: +591 62933581</p>
+                    <p>🥖 Pan recién horneado todos los días</p>
+                </div>
+
+                <div class="text-xs text-stone-500">
+                    &copy; <span id="yearSpan"></span> Panadería Pan Ruta. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-24 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <script>
+        // Business Products Catalog Dataset (Prices in Bolivianos - Bs.)
+        const products = [
+            {
+                id: 1,
+                name: "Pan Fresco Tradicional",
+                category: "panes",
+                price: 1.00,
+                image: "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?q=80&w=600&auto=format&fit=crop",
+                badge: "Ofertón 1 Bs",
+                description: "Pan de batalla recién horneado, crujiente por fuera y suave por dentro."
+            },
+            {
+                id: 2,
+                name: "Pan Marraqueta Crujiente",
+                category: "panes",
+                price: 1.00,
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop",
+                badge: "Clásico 1 Bs",
+                description: "La tradicional marraqueta crujiente elaborada con receta artesanal."
+            },
+            {
+                id: 3,
+                name: "Pan Sarnita con Queso",
+                category: "panes",
+                price: 1.50,
+                image: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=600&auto=format&fit=crop",
+                badge: "Con Queso",
+                description: "Pan suave y esponjoso cubierto con abundante queso dorado al horno."
+            },
+            {
+                id: 4,
+                name: "Pan de Masa Madre Rústico",
+                category: "panes",
+                price: 10.00,
+                image: "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?q=80&w=600&auto=format&fit=crop",
+                badge: "Artesanal",
+                description: "Fermentación natural de 24 horas con corteza crocante y miga alveolada."
+            },
+            {
+                id: 5,
+                name: "Empanada de Queso Calientita",
+                category: "salados",
+                price: 2.50,
+                image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?q=80&w=600&auto=format&fit=crop",
+                badge: "Calientita",
+                description: "Masa hojaldrada o al horno rellena de queso fundido de primera calidad."
+            },
+            {
+                id: 6,
+                name: "Cuñapé Tradicional",
+                category: "salados",
+                price: 2.00,
+                image: "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=600&auto=format&fit=crop",
+                badge: "Favorito",
+                description: "Horneado con almidón de yuca y queso criollo derretido."
+            },
+            {
+                id: 7,
+                name: "Rollo de Canela Glaseado",
+                category: "reposteria",
+                price: 3.00,
+                image: "https://images.unsplash.com/photo-1509365465985-25d11c17e812?q=80&w=600&auto=format&fit=crop",
+                badge: "Dulce",
+                description: "Pan dulce espiralado con canela aromática y cobertura glaseada suave."
+            },
+            {
+                id: 8,
+                name: "Tarta Dulce Artesanal",
+                category: "reposteria",
+                price: 15.00,
+                image: "https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?q=80&w=600&auto=format&fit=crop",
+                badge: "Familiar",
+                description: "Deliciosa tarta de frutas y crema pastelera ideal para compartir."
+            }
+        ];
+
+        // Cart State with LocalStorage Web Storage API
+        let cart = [];
+        let currentCategory = 'all';
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+            renderProducts();
+            document.getElementById('yearSpan').textContent = new Date().getFullYear();
+        });
+
+        // Load cart from LocalStorage (Web Storage API)
+        function loadCartFromStorage() {
+            try {
+                const saved = localStorage.getItem('panRutaCart');
+                if (saved) {
+                    cart = JSON.parse(saved);
+                    updateCartUI();
+                }
+            } catch (e) {
+                console.error("Error al cargar carrito desde Web Storage:", e);
+            }
+        }
+
+        // Save cart to LocalStorage
+        function saveCartToStorage() {
+            try {
+                localStorage.setItem('panRutaCart', JSON.stringify(cart));
+            } catch (e) {
+                console.error("Error al guardar en Web Storage:", e);
+            }
+        }
+
+        // Render Products Grid
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const noResults = document.getElementById('noResults');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            const filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.description.toLowerCase().includes(searchVal);
+                return matchesCat && matchesSearch;
+            });
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                filtered.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group";
+                    card.innerHTML = `
+                        <div>
+                            <div class="relative h-48 overflow-hidden bg-amber-50">
+                                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 bg-stone-900/85 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">
+                                    ${product.badge}
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-serif font-bold text-lg text-stone-900 group-hover:text-bakery-600 transition-colors mb-1.5">${product.name}</h3>
+                                <p class="text-stone-500 text-xs leading-relaxed mb-4 line-clamp-2">${product.description}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-0 flex items-center justify-between border-t border-amber-50/80 mt-auto pt-3">
+                            <div>
+                                <span class="text-xs text-stone-400 block font-medium">Precio</span>
+                                <span class="text-xl font-bold font-serif text-bakery-800">${product.price.toFixed(2)} Bs</span>
+                            </div>
+                            <button onclick="addToCart(${product.id})" class="bg-bakery-600 hover:bg-bakery-700 text-white px-3.5 py-2.5 rounded-xl shadow hover:shadow-bakery-600/30 active:scale-95 transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                                <span class="text-xs font-bold uppercase tracking-wider">Agregar</span>
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-bakery-600', 'text-white', 'border-bakery-600', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-stone-700', 'border-amber-200');
+            });
+
+            event.target.classList.remove('bg-white', 'text-stone-700', 'border-amber-200');
+            event.target.classList.add('bg-bakery-600', 'text-white', 'border-bakery-600', 'shadow-sm');
+
+            renderProducts();
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        // Add Product to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.id === productId);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCartToStorage();
+            updateCartUI();
+            showToast(`¡${product.name} agregado al carrito!`);
+            toggleCart(true);
+        }
+
+        // Update Quantity (+ / -)
+        function updateQuantity(productId, delta) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index > -1) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        // Remove Single Item
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCartToStorage();
+            updateCartUI();
+            showToast("Producto eliminado del carrito", "warning");
+        }
+
+        // Update Cart Drawer UI
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartBadge = document.getElementById('cartBadge');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Badge Counter
+            cartBadge.textContent = totalItems;
+            if (totalItems > 0) {
+                cartBadge.classList.remove('scale-0');
+                cartBadge.classList.add('scale-100');
+            } else {
+                cartBadge.classList.remove('scale-100');
+                cartBadge.classList.add('scale-0');
+            }
+
+            // Price Displays
+            cartSubtotal.textContent = `${totalPrice.toFixed(2)} Bs`;
+            cartTotal.textContent = `${totalPrice.toFixed(2)} Bs`;
+
+            // Render Drawer List
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center text-stone-400 py-12 space-y-4">
+                        <div class="w-16 h-16 bg-amber-100/60 rounded-full flex items-center justify-center text-bakery-600 text-2xl">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        <p class="font-medium text-stone-600">Tu carrito está vacío</p>
+                        <p class="text-xs text-stone-400 max-w-xs">Explora nuestro catálogo y agrega deliciosos panes frescos a tu orden.</p>
+                    </div>
+                `;
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = "flex items-center justify-between bg-amber-50/50 border border-amber-200/70 p-3 rounded-xl gap-3";
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-medium text-stone-900 text-xs sm:text-sm truncate">${item.name}</h4>
+                            <span class="text-xs font-semibold text-bakery-700 block mt-0.5">${item.price.toFixed(2)} Bs c/u</span>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-white border border-amber-300 rounded text-stone-700 hover:bg-amber-100 text-xs font-bold flex items-center justify-center transition-colors">-</button>
+                                <span class="text-xs font-bold text-stone-800 px-1">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-white border border-amber-300 rounded text-stone-700 hover:bg-amber-100 text-xs font-bold flex items-center justify-center transition-colors">+</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end justify-between self-stretch">
+                            <button onclick="removeFromCart(${item.id})" class="text-stone-400 hover:text-red-500 text-xs p-1 transition-colors" title="Eliminar">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <span class="text-sm font-bold font-serif text-stone-900">${(item.price * item.quantity).toFixed(2)} Bs</span>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+        }
+
+        function toggleCart(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+
+            if (open) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                overlay.classList.remove('opacity-100', 'pointer-events-auto');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Formatted Tabular WhatsApp Order Checkout
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío. Agrega productos antes de finalizar.", "warning");
+                return;
+            }
+
+            const name = document.getElementById('customerName').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+
+            if (!name) {
+                showToast("Por favor ingresa tu nombre completo.", "error");
+                document.getElementById('customerName').focus();
+                return;
+            }
+
+            const phone = "59162933581"; // Target Business WhatsApp Number
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+
+            // Clean tabular text formatting for WhatsApp
+            let msg = `🛒 *NUEVO PEDIDO - PANADERÍA PAN RUTA*\n`;
+            msg += `===================================\n`;
+            msg += `👤 *Cliente:* ${name}\n`;
+            if (address) {
+                msg += `📍 *Ubicación / Notas:* ${address}\n`;
+            }
+            msg += `===================================\n\n`;
+            msg += `📋 *DESGLOSE DEL PEDIDO:*\n`;
+
+            cart.forEach(item => {
+                const itemTotal = (item.price * item.quantity).toFixed(2);
+                msg += `▪ ${item.quantity}x ${item.name} -> ${itemTotal} Bs\n`;
+            });
+
+            msg += `\n===================================\n`;
+            msg += `💰 *MONTO TOTAL FINAL:* ${totalAmount} Bs\n`;
+            msg += `===================================\n\n`;
+            msg += `¡Hola! Quedo atento para confirmar el horario de entrega. Muchas gracias.`;
+
+            // Open WhatsApp Web/App Link
+            const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Toast Notification System
+        function showToast(message, type = "success") {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            let bgClass = "bg-stone-900 text-white";
+            if (type === "warning") bgClass = "bg-amber-600 text-white";
+            if (type === "error") bgClass = "bg-red-600 text-white";
+
+            toast.className = `${bgClass} px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-auto transform translate-y-2 opacity-0 transition-all duration-300 border border-white/10 text-sm font-medium`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-exclamation'} text-base"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function scrollToCatalog() {
+            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+<script
+src="https://catza-digital.github.io/catza-ai-widget/widget.js"
+data-client="panruta"
+data-position="left"
+data-message="📝 ¿Cotizamos tu pedido?">
+</script>
+
+  
+</body>
+
+  
+</html>
